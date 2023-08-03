@@ -24,7 +24,7 @@ class ChatRepository:
         client = qdrant_client.QdrantClient(
             os.getenv("QDRANT_HOST"), api_key=os.getenv("QDRANT_API_KEY")
         )
-        os.getenv("OPENAI_API_KEY")
+
         embeddings = OpenAIEmbeddings()
         # db = Chroma(embedding_function=embeddings, persist_directory="app/database")
         # db.persist()
