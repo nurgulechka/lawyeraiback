@@ -1,9 +1,7 @@
 import os
-from datetime import datetime
-from typing import Optional
 
+import openai
 import qdrant_client
-from bson.objectid import ObjectId
 from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
 from langchain.chains.question_answering import load_qa_chain
@@ -22,11 +20,12 @@ class ChatRepository:
         self.database = database
 
     def get_response(self, user_question: str) -> str:
+        openai.api_key = os.environ["OPENAI_API_KEY"]
         client = qdrant_client.QdrantClient(
             os.getenv("QDRANT_HOST"), api_key=os.getenv("QDRANT_API_KEY")
         )
         os.getenv("OPENAI_API_KEY")
-        embeddings = OpenAIEmbeddings(os.getenv("OPENAI_API_KEY"))
+        embeddings = OpenAIEmbeddings()
         # db = Chroma(embedding_function=embeddings, persist_directory="app/database")
         # db.persist()
         vector_store = Qdrant(
