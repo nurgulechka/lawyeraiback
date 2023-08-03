@@ -21,7 +21,7 @@ class ChatRepository:
     def __init__(self, database: Database):
         self.database = database
 
-    def get_response(self, user_question: str):
+    def get_response(self, user_question: str) -> str:
         client = qdrant_client.QdrantClient(
             os.getenv("QDRANT_HOST"), api_key=os.getenv("QDRANT_API_KEY")
         )
