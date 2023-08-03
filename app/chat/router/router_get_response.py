@@ -38,5 +38,5 @@ class GetResponse(AppModel):
 def get_response(
     input: GetUserRequest,
     svc: Service = Depends(get_service),
-):
+) -> str:
     return svc.repository.get_response(input.request)
