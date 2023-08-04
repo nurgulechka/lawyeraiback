@@ -34,7 +34,7 @@ class ChatRepository:
             embeddings=embeddings,
         )
         llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k", temperature=0.0)
-        chain = load_qa_chain(llm=llm, chain_type="map_reduce")
+        chain = load_qa_chain(llm=llm, chain_type="refine")
         docs = vector_store.similarity_search(user_question)
         # qa = RetrievalQA.from_chain_type(
         #     llm=llm, chain_type="map_reduce", retriever=vector_store.as_retriever()
